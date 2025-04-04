@@ -1,4 +1,10 @@
 # National-Poll-on-Healthy-Aging-NPHA-
+
+# NPHA Doctor Visits Project
+
+![Build Status](https://img.shields.io/travis/parisazeynaly/NPHA-doctor-visits?style=flat-square)
+![License](https://img.shields.io/github/license/parisazeynaly/NPHA-doctor-visits?style=flat-square)
+
 This repository contains an analysis of the National Poll on Healthy Aging (NPHA) dataset. The dataset explores various aspects of health in aging populations, including doctor visits, mental health, sleep medication, and stress.
 
 In this project, various machine learning techniques are applied to:
@@ -76,5 +82,4 @@ Investigate more sophisticated models like XGBoost or neural networks.
 
 Handle categorical variables (if any) and experiment with other preprocessing techniques.
 
-Deploy the model for real-time predictions (web interface).
 
