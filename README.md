@@ -1,85 +1,314 @@
-# National-Poll-on-Healthy-Aging-NPHA-
+# Predicting and Understanding Healthcare Utilization Among Older Adults:
+## A Machine Learning and Causal Inference Analysis of the National Poll on Healthy Aging (NPHA)
 
-# NPHA Doctor Visits Project
+![Python](https://img.shields.io/badge/Python-3.10+-blue)
+![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-ML-orange)
+![DoWhy](https://img.shields.io/badge/DoWhy-Causal%20Inference-green)
+![SHAP](https://img.shields.io/badge/SHAP-Explainable%20AI-red)
+![Status](https://img.shields.io/badge/Status-Research%20Project-success)
 
-![Build Status](https://img.shields.io/travis/parisazeynaly/NPHA-doctor-visits?style=flat-square)
-![License](https://img.shields.io/github/license/parisazeynaly/NPHA-doctor-visits?style=flat-square)
+---
 
-This repository contains an analysis of the National Poll on Healthy Aging (NPHA) dataset. The dataset explores various aspects of health in aging populations, including doctor visits, mental health, sleep medication, and stress.
+# Overview
 
-In this project, various machine learning techniques are applied to:
+Healthcare utilization is influenced by a combination of physical, psychological, and behavioral factors. Understanding these relationships is important for improving healthcare planning, identifying vulnerable populations, and supporting evidence-based policy decisions.
 
-Preprocess the data
+This project investigates healthcare utilization among older adults using data from the National Poll on Healthy Aging (NPHA). The study combines traditional machine learning techniques with causal inference methods to explore both predictive and potential causal relationships between health-related factors and the number of doctor visits.
 
-Explore correlations and visualize patterns
+The project follows a research-oriented workflow including data preprocessing, exploratory data analysis, predictive modeling, explainable AI, and causal effect estimation.
 
-Build regression and classification models
+---
 
-Perform feature selection and evaluate model performance
+# Research Questions
 
-Dataset
-The NPHA dataset is publicly available from the UCI Machine Learning Repository. You can access it here:
-NPHA Dataset - UCI Repository
+### RQ1
+Can machine learning models accurately predict the number of doctor visits among older adults?
 
-Data Preprocessing
-Missing Value Handling: Checked and handled missing values in the dataset.
+### RQ2
+Which health-related factors contribute most to healthcare utilization?
 
-Outlier Detection & Capping: Identified and capped outliers in numeric columns using IQR.
+### RQ3
+What is the estimated causal effect of mental health on the number of doctor visits?
 
-Feature Selection: Dropped columns with low variance (e.g., Age column).
+### RQ4
+To what extent do sleep-related factors mediate the relationship between mental health and healthcare utilization?
 
-Data Scaling: Applied standard scaling to numeric features for better model performance.
+---
 
-Exploratory Data Analysis (EDA)
-Correlation Heatmap: Visualized relationships between numeric features.
+# Dataset
 
-Boxplots: Detected and visualized outliers in key features like doctor visits, mental health, and sleep medications.
+**National Poll on Healthy Aging (NPHA)**
 
-Pairplots: Visualized feature distributions and pairwise relationships.
+The dataset contains information about older adults, including:
 
-Regression Models
-Random Forest Regressor: Used for predicting the number of doctors visited based on other features.
+- Number of Doctors Visited
+- Mental Health Status
+- Physical Health Indicators
+- Stress Levels
+- Sleep Quality
+- Prescription Sleep Medication Usage
+- Demographic Variables
 
-Feature Importance: Identified important features influencing the prediction model.
+Target Variable:
 
-Linear Regression: Applied for comparison with the Random Forest model.
+```text
+Number of Doctors Visited
+```
 
-Classification Models
-Random Forest Classifier: Applied for classifying the number of doctors visited.
+---
 
-Gradient Boosting Classifier: Used to improve classification accuracy.
+# Methodology
 
-SMOTE: Applied Synthetic Minority Over-sampling Technique (SMOTE) to handle class imbalance.
+The project consists of five main stages.
 
-Usage
-Download the dataset and place it in the project directory (or provide the path in the code).
+## 1. Data Preprocessing
 
-Run the Python scripts to perform preprocessing, EDA, and model training.
+- Missing value analysis
+- Outlier detection using IQR
+- Outlier treatment through capping
+- Data cleaning and feature preparation
 
-python preprocess_data.py
-python train_models.py
-python evaluate_models.py
+---
 
-Requirements
-pandas
+## 2. Exploratory Data Analysis (EDA)
 
-matplotlib
+Exploratory analysis is performed to understand:
 
-seaborn
+- Feature distributions
+- Variable relationships
+- Correlation patterns
+- Potential predictors of healthcare utilization
 
-scikit-learn
+Visualizations include:
 
-imblearn
+- Boxplots
+- Histograms
+- Pairplots
+- Correlation heatmaps
 
+---
 
-Conclusion
-Feature Importance: Key features influencing doctor visits were identified using the Random Forest model.
+## 3. Predictive Modeling
 
-Model Evaluation: Regression and classification models were evaluated based on their performance metrics (MSE, R², accuracy).
+Several machine learning models are trained and compared.
 
-Future Work
-Investigate more sophisticated models like XGBoost or neural networks.
+### Linear Regression
 
-Handle categorical variables (if any) and experiment with other preprocessing techniques.
+Used as a baseline interpretable model.
 
+### Random Forest Regression
 
+Used to capture nonlinear relationships and feature interactions.
+
+### Gradient Boosting Regression
+
+Used to improve predictive performance through sequential learning.
+
+### Evaluation Metrics
+
+- MAE (Mean Absolute Error)
+- RMSE (Root Mean Squared Error)
+- R² Score
+
+---
+
+## 4. Explainable AI
+
+To understand model behavior, SHAP (SHapley Additive exPlanations) is used.
+
+### Objectives
+
+- Identify influential predictors
+- Explain individual predictions
+- Understand feature contributions
+
+Visualizations include:
+
+- SHAP Summary Plot
+- Feature Importance Ranking
+- Dependence Plots
+
+---
+
+## 5. Causal Inference
+
+While predictive models identify associations, causal inference aims to estimate potential causal effects.
+
+### Treatment
+
+```text
+Mental Health
+```
+
+### Outcome
+
+```text
+Number of Doctors Visited
+```
+
+### Potential Confounders
+
+- Age
+- Physical Health
+- Stress
+- Sleep Quality
+- Medication Usage
+
+### Causal Framework
+
+A Directed Acyclic Graph (DAG) is constructed to represent assumed causal relationships.
+
+The analysis uses:
+
+- DoWhy
+- Backdoor Adjustment
+- Refutation Tests
+
+---
+
+# Project Structure
+
+```text
+npha-healthcare-utilization/
+│
+├── data/
+│   └── NPHA-doctor-visits.csv
+│
+├── notebooks/
+│   ├── 01_eda.ipynb
+│   ├── 02_predictive_modeling.ipynb
+│   ├── 03_shap_analysis.ipynb
+│   └── 04_causal_inference.ipynb
+│
+├── src/
+│   ├── preprocessing.py
+│   ├── modeling.py
+│   ├── explainability.py
+│   └── causal_analysis.py
+│
+├── outputs/
+│   ├── figures/
+│   ├── metrics/
+│   └── reports/
+│
+├── requirements.txt
+├── README.md
+└── .gitignore
+```
+
+---
+
+# Technologies Used
+
+- Python
+- Pandas
+- NumPy
+- Scikit-Learn
+- Matplotlib
+- Seaborn
+- SHAP
+- DoWhy
+- NetworkX
+
+---
+
+# Key Findings
+
+The project aims to identify:
+
+- The strongest predictors of healthcare utilization.
+- The role of mental health in influencing doctor visits.
+- The interaction between stress, sleep quality, and healthcare outcomes.
+- Potential causal mechanisms behind healthcare utilization patterns.
+
+---
+
+# Limitations
+
+This study is based on observational survey data.
+
+Therefore:
+
+- Results from machine learning models represent predictive associations.
+- Causal estimates depend on the assumed causal graph and observed confounders.
+- Findings should not be interpreted as definitive proof of causality.
+
+---
+
+# Future Work
+
+Potential extensions include:
+
+- Structural Causal Models (SCM)
+- Bayesian Networks
+- Counterfactual Analysis
+- Causal Discovery Algorithms
+- Longitudinal Healthcare Modeling
+- Reinforcement Learning for Personalized Healthcare Interventions
+
+---
+
+# Reproducibility
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Run preprocessing:
+
+```bash
+python src/preprocessing.py
+```
+
+Train models:
+
+```bash
+python src/modeling.py
+```
+
+Generate SHAP explanations:
+
+```bash
+python src/explainability.py
+```
+
+Run causal analysis:
+
+```bash
+python src/causal_analysis.py
+```
+
+---
+
+# Citation
+
+If you use this repository for research or educational purposes, please cite:
+
+```bibtex
+@misc{npha_healthcare_utilization,
+  author = {Sara Hashemi},
+  title = {Predicting and Understanding Healthcare Utilization Among Older Adults: A Machine Learning and Causal Inference Analysis},
+  year = {2026},
+  publisher = {GitHub},
+  url = {https://github.com/yourusername/repository}
+}
+```
+
+---
+
+# Author
+
+**Sara Hashemi**
+
+MSc Data Science  
+University of Naples Federico II
+
+Research Interests:
+
+- Causal Inference
+- Reinforcement Learning
+- Trustworthy AI
+- Large Language Models
+- Healthcare Analytics
