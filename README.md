@@ -280,35 +280,8 @@ Run causal analysis:
 python src/causal_analysis.py
 ```
 
----
 
-# Citation
-
-If you use this repository for research or educational purposes, please cite:
-
-```bibtex
-@misc{npha_healthcare_utilization,
-  author = {Sara Hashemi},
-  title = {Predicting and Understanding Healthcare Utilization Among Older Adults: A Machine Learning and Causal Inference Analysis},
-  year = {2026},
-  publisher = {GitHub},
-  url = {https://github.com/yourusername/repository}
-}
-```
 
 ---
 
-# Author
 
-**Sara Hashemi**
-
-MSc Data Science  
-University of Naples Federico II
-
-Research Interests:
-
-- Causal Inference
-- Reinforcement Learning
-- Trustworthy AI
-- Large Language Models
-- Healthcare Analytics
